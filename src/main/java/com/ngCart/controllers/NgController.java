@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ngCart.models.CommonVo;
 import com.ngCart.models.Product;
 import com.ngCart.models.User;
 import com.ngCart.services.CartService;
+import com.ngCart.services.OrderService;
 import com.ngCart.services.ProductService;
 import com.ngCart.services.UserService;
 
@@ -26,6 +28,9 @@ public class NgController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	@RequestMapping(value = "test" , method=RequestMethod.GET)
 	public String testApi(){
@@ -60,6 +65,16 @@ public class NgController {
 	@RequestMapping(value = "checkout/{userId}" , method = RequestMethod.GET)
 	public String checkout(@PathVariable String userId){
 		return cartService.checkout(userId);
+	}
+	
+	@RequestMapping(value = "displayCart/{userId}", method = RequestMethod.GET)
+	public List<CommonVo> displayCart(@PathVariable String userId){
+		return cartService.displayCart(userId);
+	}
+	
+	@RequestMapping(value = "displayUserOrders/{userId}", method = RequestMethod.GET)
+	public List<CommonVo> displayUserOrders(@PathVariable String userId){
+		return orderService.displayUserOrders(userId);
 	}
 	
 }

@@ -1,6 +1,7 @@
 com\ngCart\util\GenerateUUID.class
 com\ngCart\services\CartService.class
 com\ngCart\models\OrderItems.class
+com\ngCart\models\CommonVo.class
 com\ngCart\services\ProductService.class
 com\ngCart\models\Product.class
 com\ngCart\util\GenerateHash.class

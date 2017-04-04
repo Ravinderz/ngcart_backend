@@ -8,8 +8,35 @@ public class CommonVo {
 	private String orderId;
 	private String orderItemId;
 	private String userId;
+	private String productName;
+	private String productDesc;
+	private String productType;
+	private float productPrice;
 	
-	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getProductDesc() {
+		return productDesc;
+	}
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
+	}
+	public String getProductType() {
+		return productType;
+	}
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+	public float getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
+	}
 	public String getUserId() {
 		return userId;
 	}
