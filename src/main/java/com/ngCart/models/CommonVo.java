@@ -9,10 +9,18 @@ public class CommonVo {
 	private String orderItemId;
 	private String userId;
 	private String productName;
+	private String productImg;
 	private String productDesc;
 	private String productType;
 	private float productPrice;
 	
+	
+	public String getProductImg() {
+		return productImg;
+	}
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
+	}
 	public String getProductName() {
 		return productName;
 	}

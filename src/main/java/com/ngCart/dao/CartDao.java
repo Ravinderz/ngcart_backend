@@ -45,7 +45,7 @@ public class CartDao {
 	@Transactional
 	public List<CommonVo> displayCart(String userId){
 		List<CommonVo> commonVoList = new ArrayList<CommonVo>();
-		String query = "select ci.cart_item_id,p.product_id,p.product_name,p.product_desc,p.product_type,p.product_price,c.user_id from products p,cart_items ci , cart c where ci.cart_id = c.cart_id and p.product_id = ci.product_id and  c.user_id = ?";
+		String query = "select ci.cart_item_id,p.product_id,p.product_name,p.product_desc,p.product_image,p.product_type,p.product_price,c.user_id from products p,cart_items ci , cart c where ci.cart_id = c.cart_id and p.product_id = ci.product_id and  c.user_id = ?";
 		
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] inputs = new Object[] {userId};
@@ -58,6 +58,7 @@ public class CartDao {
 			commonVo.setProductDesc((String) row.get("product_desc"));
 			commonVo.setProductType((String) row.get("product_type"));
 			commonVo.setProductPrice((Float) row.get("product_price"));
+			commonVo.setProductImg((String) row.get("product_image"));
 			commonVo.setUserId((String) row.get("user_id"));
 			commonVoList.add(commonVo);
 		}

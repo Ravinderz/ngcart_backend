@@ -1,0 +1,56 @@
+create table users (
+	user_id varchar(255) NOT NULL,
+	first_name varchar(255),
+	last_name varchar(255),
+	email varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
+	created_time timestamp,
+	PRIMARY KEY (user_id)
+);
+
+create table cart (
+	cart_id varchar(255) NOT NULL,
+	user_id varchar(255) NOT NULL,
+	created_time timestamp,
+	PRIMARY KEY(cart_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+create table orders (
+	order_id varchar(255) NOT NULL,
+	user_id varchar(255) NOT NULL,
+	created_time timestamp,
+	PRIMARY KEY(order_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+create table products(
+	product_id varchar(255) NOT NULL,
+	product_name varchar(255),
+	product_desc varchar(255),
+	product_type varchar(255),
+	product_image varchar(255),
+	product_price double,
+	created_time timestamp,
+	PRIMARY KEY (product_id)
+);
+
+create table cart_items(
+	cart_item_id varchar(255) NOT NULL,
+	cart_id varchar(255) NOT NULL,
+	product_id varchar(255) NOT NULL,
+	PRIMARY KEY (cart_item_id),
+	FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
+	FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+create table order_items(
+	order_item_id varchar(255) NOT NULL,
+	order_id varchar(255) NOT NULL,
+	product_id varchar(255) NOT NULL,
+	PRIMARY KEY (order_item_id),
+	FOREIGN KEY (order_id) REFERENCES orders(order_id),
+	FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+

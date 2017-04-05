@@ -37,6 +37,7 @@ public class ProductDao {
 			product.setProductDesc((String) row.get("product_desc"));
 			product.setProductType((String) row.get("product_type"));
 			product.setProductPrice((Float) row.get("product_price"));
+			product.setProductImg((String) row.get("product_image"));
 			product.setCreatedTime((Timestamp) row.get("created_time"));
 			productList.add(product);
 		}

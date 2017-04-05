@@ -44,7 +44,7 @@ public class OrderDao {
 	
 	public List<CommonVo> displayUserOrders(String userId){
 		List<CommonVo> commonVoList = new ArrayList<CommonVo>();
-		String query = "select oi.order_item_id,o.order_id,p.product_id,p.product_name,p.product_desc,p.product_type,p.product_price,o.user_id from products p,order_items oi ,orders o where oi.order_id = o.order_id and p.product_id = oi.product_id and  o.user_id = ?";
+		String query = "select oi.order_item_id,o.order_id,p.product_id,p.product_image,p.product_name,p.product_desc,p.product_type,p.product_price,o.user_id from products p,order_items oi ,orders o where oi.order_id = o.order_id and p.product_id = oi.product_id and  o.user_id = ?";
 		
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] inputs = new Object[] {userId};
@@ -58,6 +58,7 @@ public class OrderDao {
 			commonVo.setProductDesc((String) row.get("product_desc"));
 			commonVo.setProductType((String) row.get("product_type"));
 			commonVo.setProductPrice((Float) row.get("product_price"));
+			commonVo.setProductImg((String) row.get("product_image"));
 			commonVo.setUserId((String) row.get("user_id"));
 			commonVoList.add(commonVo);
 		}

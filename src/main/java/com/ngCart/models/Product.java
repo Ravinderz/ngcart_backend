@@ -9,8 +9,17 @@ public class Product {
 	private String productDesc;
 	private float productPrice;
 	private String productType;
+	private String productImg;
 	private Timestamp createdTime;
 	
+	
+	
+	public String getProductImg() {
+		return productImg;
+	}
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
+	}
 	public String getProductId() {
 		return productId;
 	}

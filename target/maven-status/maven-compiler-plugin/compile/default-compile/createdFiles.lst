@@ -7,6 +7,7 @@ com\ngCart\models\Product.class
 com\ngCart\util\GenerateHash.class
 com\ngCart\services\OrderService.class
 com\ngCart\models\UserRowMapper.class
+com\ngCart\models\TestPOJO.class
 com\ngCart\dao\ProductDao.class
 com\ngCart\dao\CartDao.class
 com\ngCart\controllers\NgController.class
