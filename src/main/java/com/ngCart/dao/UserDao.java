@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ngCart.models.User;
 import com.ngCart.models.UserRowMapper;
+import com.ngCart.util.ApplicationUtil;
 import com.ngCart.util.GenerateHash;
 import com.ngCart.util.GenerateUUID;
 
@@ -27,8 +28,8 @@ public class UserDao {
 		
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		Date date = new Date();
-		Timestamp currTime = new Timestamp(date.getTime());
+		
+		Timestamp currTime = ApplicationUtil.getCurrentTimeStamp();
 		String userId = GenerateUUID.generateId();
 		String cartId = GenerateUUID.generateId();
 		String insertUserQuery = "INSERT INTO users (user_id,first_name,last_name,email,password,created_time) values (?,?,?,?,?,?)";
@@ -37,7 +38,7 @@ public class UserDao {
 		jdbcTemplate.update(insertCartQuery, cartId,userId,currTime);
 		
 		
-		return "User has been registered successfully";
+		return ApplicationUtil.composeSuccessJsonOuput("User has been registered successfully").toString();
 	}
 	
 	public User login(User user){

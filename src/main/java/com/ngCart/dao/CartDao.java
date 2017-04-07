@@ -2,7 +2,6 @@ package com.ngCart.dao;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ngCart.models.CommonVo;
 import com.ngCart.models.Product;
+import com.ngCart.util.ApplicationUtil;
 import com.ngCart.util.GenerateUUID;
 
 @Repository
@@ -36,10 +36,10 @@ public class CartDao {
 		String cartId = jdbcTemplate.queryForObject(getCartIdQuery, inputs,String.class);
 
 		String cartItemId = GenerateUUID.generateId();
-		Date date = new Date();
-		Timestamp currTime = new Timestamp(date.getTime());
+		
+		Timestamp currTime = ApplicationUtil.getCurrentTimeStamp();
 		jdbcTemplate.update(query,cartItemId,cartId,product.getProductId(),currTime);
-		return "product added to cart successfully";
+		return ApplicationUtil.composeSuccessJsonOuput("product added to cart successfully").toString();
 	}
 	
 	@Transactional
@@ -81,12 +81,12 @@ public class CartDao {
 			commonVoList.add(commonVo);
 		}
 		
-		orderDao.createOrder(commonVoList, userId);
+		String orderId = orderDao.createOrder(commonVoList, userId);
 		
 		String deleteCartItemQuery = "delete from cart_items where cart_id = (select cart_id from cart where user_id = ?)";
 		jdbcTemplate.update(deleteCartItemQuery, userId);
 
-		return "done";
+		return ApplicationUtil.composeSuccessJsonOuput(orderId).toString();
 	}
 	
 	

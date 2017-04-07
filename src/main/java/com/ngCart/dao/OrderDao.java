@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.ngCart.models.CommonVo;
+import com.ngCart.util.ApplicationUtil;
 import com.ngCart.util.GenerateUUID;
 
 @Repository
@@ -25,8 +26,8 @@ public class OrderDao {
 	public String createOrder(List<CommonVo> CommonVoList,String userId){
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		String orderId = GenerateUUID.generateId();
-		Date date = new Date();
-		Timestamp currTime = new Timestamp(date.getTime());
+		
+		Timestamp currTime = ApplicationUtil.getCurrentTimeStamp();
 		String createOrderQuery = "INSERT INTO orders values(?,?,?)";
 		jdbcTemplate.update(createOrderQuery,orderId,userId,currTime);
 		
@@ -34,12 +35,12 @@ public class OrderDao {
 		
 		for(CommonVo commonVo : CommonVoList){
 			String orderItemId = GenerateUUID.generateId();
-			date = new Date();
-			currTime = new Timestamp(date.getTime());
+			
+			currTime = ApplicationUtil.getCurrentTimeStamp();
 			jdbcTemplate.update(insertProductsQuery,orderItemId,orderId,commonVo.getProductId(),currTime);
 		}
 		
-		return "order created successfully";
+		return orderId;
 	}
 	
 	public List<CommonVo> displayUserOrders(String userId){

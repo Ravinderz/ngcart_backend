@@ -67,6 +67,11 @@ public class NgController {
 		return cartService.checkout(userId);
 	}
 	
+	@RequestMapping(value = "removeFromCart/{cartItemId}" , method=RequestMethod.GET)
+	public String removeFromCart(@PathVariable String cartItemId){
+		return cartService.removeFromCart(cartItemId);
+	}
+	
 	@RequestMapping(value = "displayCart/{userId}", method = RequestMethod.GET)
 	public List<CommonVo> displayCart(@PathVariable String userId){
 		return cartService.displayCart(userId);

@@ -1,4 +1,5 @@
 com\ngCart\util\GenerateUUID.class
+com\ngCart\util\ApplicationUtil.class
 com\ngCart\services\CartService.class
 com\ngCart\models\OrderItems.class
 com\ngCart\models\CommonVo.class
@@ -7,8 +8,8 @@ com\ngCart\models\Product.class
 com\ngCart\util\GenerateHash.class
 com\ngCart\services\OrderService.class
 com\ngCart\models\UserRowMapper.class
-com\ngCart\models\TestPOJO.class
 com\ngCart\dao\ProductDao.class
+com\ngCart\dao\CartItemDao.class
 com\ngCart\dao\CartDao.class
 com\ngCart\controllers\NgController.class
 com\ngCart\services\UserService.class
